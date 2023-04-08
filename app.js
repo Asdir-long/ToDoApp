@@ -5,6 +5,23 @@ let resetbtn = document.querySelector('#removeFinished');
 let totalTask = 0;
 
 
+const addNewItem = () => {
+    let value = taskInp.value;
+    if (value == "") {
+        return;
+    }
+    totalTask++;
+    console.log(value);
+    taskList.append(getNewLi(value));
+    taskInp.value = "";
+}
+
+taskInp.addEventListener('keydown',(e)=>{
+    if(e.key === "Enter"){
+        addNewItem();
+    }
+})
+
 const finishItem = (e) => {
     let li = e.target.parentElement
     let checkButton = e.target;
@@ -20,7 +37,7 @@ resetbtn.addEventListener('click',()=>{
     }
 })
 
-const getNewItem = (value) => {
+const getNewLi = (value) => {
     let li = document.createElement('li');
     let label = document.createElement('label')
     let checkButton = document.createElement('input')
@@ -30,19 +47,11 @@ const getNewItem = (value) => {
     console.log(value);
     label.innerText = value;
     label.htmlFor = totalTask;
+    label.classList.add('tag','is-large')
     li.append(label, checkButton);
+    li.classList.add("list-container")
     return li;
 }
 
-subBtn.addEventListener('click', () => {
-    let value = taskInp.value;
-    if (value == "") {
-        return;
-    }
-    totalTask++;
-    console.log(value);
-    taskList.append(getNewItem(value));
-    taskInp.value = "";
-})
-
+subBtn.addEventListener('click', addNewItem)
 

@@ -1,3 +1,15 @@
+html{
+    background-color: #E9F7CA;
+}
 .finish{
     text-decoration: line-through;
+}
+
+.list-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkboxes{
+
 }
